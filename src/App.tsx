@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { fetchURL, DifficultyLevel, Category } from './API/FetchAPI';
+import { GlobalProvider } from './context/GlobalState';
+import {  GlobalStyle } from './App.styles';
+import { Routes, Route } from 'react-router';
+import  MainGrid  from './components/MainGrid';
+import  Home  from './components/Home';
+import  Title  from './components/Title';
+import  DLevel  from './components/DLevel';
+import  Quiz  from './components/Quiz';
 
 function App() {
+  //const data = fetchURL(10, DifficultyLevel.EASY ,Category.ALL);
+  //console.log(data);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalProvider>
+    < GlobalStyle/>
+    <Title/>
+    <Home/>
+    <Routes>		
+		<Route path="/" element={<MainGrid />}> </Route>
+    <Route path="/level" element={<DLevel/>}> </Route>
+    <Route path="/quiz" element={<Quiz />}> </Route>
+    </Routes>
+    </GlobalProvider>
+    
   );
 }
 

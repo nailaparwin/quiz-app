@@ -1,0 +1,1693 @@
+(this["webpackJsonpquiz-app"] = this["webpackJsonpquiz-app"] || []).push([["main"],{
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!./node_modules/postcss-loader/src??postcss!./src/index.css ***!
+  \**************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "body {\n  margin: 0;\n  background-color: black;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n    sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\n    monospace;\n}\n", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./src/API/FetchAPI.tsx":
+/*!******************************!*\
+  !*** ./src/API/FetchAPI.tsx ***!
+  \******************************/
+/*! exports provided: fetchURL, DifficultyLevel, Category, shuffleArray */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchURL", function() { return fetchURL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DifficultyLevel", function() { return DifficultyLevel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Category", function() { return Category; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shuffleArray", function() { return shuffleArray; });
+const fetchURL = async (NoOfQuestion, difficultyLevel, quizDomain) => {
+  const url = `https://opentdb.com/api.php?amount=${NoOfQuestion}&difficulty=${difficultyLevel}&category=${quizDomain}&type=multiple`;
+  const data = await (await (await fetch(url)).json()).results; //console.log('json' , data);
+
+  return data;
+};
+let DifficultyLevel;
+
+(function (DifficultyLevel) {
+  DifficultyLevel["EASY"] = "easy";
+  DifficultyLevel["MEDIUM"] = "medium";
+  DifficultyLevel["HARD"] = "hard";
+})(DifficultyLevel || (DifficultyLevel = {}));
+
+let Category;
+
+(function (Category) {
+  Category["GK"] = "9";
+  Category["SN"] = "17";
+  Category["SP"] = "21";
+  Category["VH"] = "28";
+})(Category || (Category = {}));
+
+const shuffleArray = array => [...array].sort(() => Math.random() - 0.5);
+
+/***/ }),
+
+/***/ "./src/App.styles.ts":
+/*!***************************!*\
+  !*** ./src/App.styles.ts ***!
+  \***************************/
+/*! exports provided: GlobalStyle, Rotate, Rotate2, Wrapper, ButtonWrapper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalStyle", function() { return GlobalStyle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Rotate", function() { return Rotate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Rotate2", function() { return Rotate2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Wrapper", function() { return Wrapper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ButtonWrapper", function() { return ButtonWrapper; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+
+const GlobalStyle = styled_components__WEBPACK_IMPORTED_MODULE_0__["createGlobalStyle"]`
+    html {
+        height: 100%;
+    }
+    body {
+        background-color: black;
+        color: white;
+    }
+    #anim{
+        display: flex;
+        margin-left: 10px;
+        margin-right: 10px;
+        
+    }
+    
+    div{
+        padding: 2px;
+        
+    }
+    #divround{
+        border-radius: 50%;
+        background-color: red;
+        align-items: top;
+        justify-content: top;
+        width: 50px;
+        height: 50px;          
+        margin-top: 50px;
+    }
+    #divround h4{
+        text-align: top;
+        margin-top: 0px;
+        margin-left: 3px;
+    }
+    #divround2{
+        border-radius: 50%;
+        background-color: orange;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;  
+        
+        margin-top: 8px;
+    }
+    #category{
+        color: white;
+        text-align: center;
+    }
+    #container{
+        border: 4px solid white;
+        display:flex;
+        margin-left: 200px;
+        margin-right: 200px;
+        color: white;
+    }
+    #cat1{
+        display: flex;
+        color: white;
+        background-color: #00897B ;
+        width: 150px;
+        height: 200px;
+        align-items: center;
+        justify-content: center;
+    }
+    #cat1 h2{
+        text-align: center;
+       
+    }
+    #cat2{
+        display: flex;
+        color: white;
+        background-color: orange;
+        width: 150px;
+        height: 200px;    
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+    #cat3{
+        display: flex;
+        color: white;
+        background-color: #03A9F4 ;
+        width: 150px;
+        height: 200px;        
+        text-align: center;
+        align-items: center;
+         justify-content: center;
+    }
+    #cat4 {
+        display: flex;
+        color: white;
+        background-color: pink;
+        width: 150px;
+        height: 200px;       
+        text-align: center; 
+        align-items: center;
+        justify-content: center;
+    }
+`; // Create the keyframes
+
+const rotate = styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"]`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`; // Here we create a component that will rotate everything we pass in over two seconds
+
+const Rotate = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div`
+  display: inline-block;
+  animation: ${rotate} 2s linear 10;
+  background-color: red;
+  font-size: 1.2rem;
+  
+  
+`;
+const rotate2 = styled_components__WEBPACK_IMPORTED_MODULE_0__["keyframes"]`
+  from {
+    
+    transform: translate(-500px)
+  }
+
+  to {
+    transform: translate(500px);
+  }
+`; // Here we create a component that will rotate everything we pass in over two seconds
+
+const Rotate2 = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div`
+  
+  animation: ${rotate2} 3s linear 1;
+  background-color: red;
+  font-size: 1.2rem;
+  
+  
+`;
+const Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  > p {
+    color: #fff;
+  }
+  .score {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0;
+  }
+  h1 {
+    font-family: Fascinate Inline;
+    background-image: linear-gradient(180deg, #fff, #87f1ff);
+    font-weight: 400;
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px #0085a3);
+    font-size: 70px;
+    text-align: center;
+    margin: 20px;
+  }
+  .start, .next {
+    cursor: pointer;
+    background: linear-gradient(180deg, #ffffff, #ffcc91);
+    border: 2px solid #d38558;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    height: 40px;
+    margin: 20px 0;
+    padding: 0 40px;
+  }
+  .start {
+    max-width: 200px;
+  }
+`;
+const ButtonWrapper = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div`
+  transition: all 0.3s ease;
+  :hover {
+    opacity: 0.8;
+  }
+  
+  button {
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.8rem;
+    width: 100%;
+    height: 40px;
+    margin: 5px 0;
+    background: ${({
+  correct,
+  userClicked
+}) => correct ? 'linear-gradient(90deg, #56FFA4, #59BC86)' : !correct && userClicked ? 'linear-gradient(90deg, #FF5656, #C16868)' : 'linear-gradient(90deg, #56ccff, #6eafb4)'};
+    border: 3px solid #ffffff;
+    box-shadow: 1px 2px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    color: #fff;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+  }
+`;
+
+/***/ }),
+
+/***/ "./src/App.tsx":
+/*!*********************!*\
+  !*** ./src/App.tsx ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _context_GlobalState__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./context/GlobalState */ "./src/context/GlobalState.tsx");
+/* harmony import */ var _App_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.styles */ "./src/App.styles.ts");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/index.js");
+/* harmony import */ var _components_MainGrid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/MainGrid */ "./src/components/MainGrid.tsx");
+/* harmony import */ var _components_Home__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Home */ "./src/components/Home.tsx");
+/* harmony import */ var _components_Title__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Title */ "./src/components/Title.tsx");
+/* harmony import */ var _components_DLevel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/DLevel */ "./src/components/DLevel.tsx");
+/* harmony import */ var _components_Quiz__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Quiz */ "./src/components/Quiz.tsx");
+var _jsxFileName = "D:\\naila\\bootcamp2020\\quiz-app\\src\\App.tsx";
+
+
+
+
+
+
+
+
+
+
+function App() {
+  //const data = fetchURL(10, DifficultyLevel.EASY ,Category.ALL);
+  //console.log(data);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_context_GlobalState__WEBPACK_IMPORTED_MODULE_1__["GlobalProvider"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16,
+      columnNumber: 5
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App_styles__WEBPACK_IMPORTED_MODULE_2__["GlobalStyle"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17,
+      columnNumber: 5
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Title__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18,
+      columnNumber: 5
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Home__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19,
+      columnNumber: 5
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Routes"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 20,
+      columnNumber: 5
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+    path: "/",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MainGrid__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 21,
+        columnNumber: 28
+      }
+    }),
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 21,
+      columnNumber: 3
+    }
+  }, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+    path: "/level",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_DLevel__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 22,
+        columnNumber: 35
+      }
+    }),
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 22,
+      columnNumber: 5
+    }
+  }, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+    path: "/quiz",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Quiz__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      __self: this,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 23,
+        columnNumber: 34
+      }
+    }),
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 23,
+      columnNumber: 5
+    }
+  }, " ")));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+
+/***/ "./src/components/DLevel.tsx":
+/*!***********************************!*\
+  !*** ./src/components/DLevel.tsx ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MainGrid; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
+/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/index.js");
+/* harmony import */ var _API_FetchAPI__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../API/FetchAPI */ "./src/API/FetchAPI.tsx");
+/* harmony import */ var _context_GlobalState__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../context/GlobalState */ "./src/context/GlobalState.tsx");
+var _jsxFileName = "D:\\naila\\bootcamp2020\\quiz-app\\src\\components\\DLevel.tsx";
+
+
+
+
+
+
+
+const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["makeStyles"])(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(0),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    width: 150
+  },
+  paperSelect: {
+    padding: theme.spacing(2)
+  }
+}));
+function MainGrid() {
+  const navigate = Object(react_router__WEBPACK_IMPORTED_MODULE_4__["useNavigate"])();
+  const classes = useStyles();
+  const [level, setLevel] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+  const {
+    levelQuiz
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_GlobalState__WEBPACK_IMPORTED_MODULE_6__["GlobalContext"]);
+  const {
+    updateLevel
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_GlobalState__WEBPACK_IMPORTED_MODULE_6__["GlobalContext"]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes.root,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36,
+      columnNumber: 5
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    container: true,
+    spacing: 3,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 37,
+      columnNumber: 7
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 12,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    id: "category",
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39,
+      columnNumber: 11
+    }
+  }, "Difficulty Level")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 3,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 41,
+      columnNumber: 9
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 2,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 44,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: level === _API_FetchAPI__WEBPACK_IMPORTED_MODULE_5__["DifficultyLevel"].EASY ? classes.paperSelect : classes.paper,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 45,
+      columnNumber: 11
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "cat1",
+    onClick: () => {
+      setLevel(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_5__["DifficultyLevel"].EASY);
+      updateLevel(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_5__["DifficultyLevel"].EASY);
+    },
+    style: {
+      backgroundImage: `url(${__webpack_require__(/*! ./../images/easy.png */ "./src/images/easy.png")})`,
+      backgroundSize: '150px 200px'
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 47,
+      columnNumber: 11
+    }
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 2,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: level === _API_FetchAPI__WEBPACK_IMPORTED_MODULE_5__["DifficultyLevel"].MEDIUM ? classes.paperSelect : classes.paper,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 51,
+      columnNumber: 11
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "cat2",
+    onClick: () => {
+      setLevel(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_5__["DifficultyLevel"].MEDIUM);
+      updateLevel(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_5__["DifficultyLevel"].MEDIUM);
+    },
+    style: {
+      backgroundImage: `url(${__webpack_require__(/*! ./../images/med.png */ "./src/images/med.png")})`,
+      backgroundSize: '150px 200px'
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52,
+      columnNumber: 11
+    }
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 2,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 55,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: level === _API_FetchAPI__WEBPACK_IMPORTED_MODULE_5__["DifficultyLevel"].HARD ? classes.paperSelect : classes.paper,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 56,
+      columnNumber: 11
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "cat3",
+    onClick: () => {
+      setLevel(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_5__["DifficultyLevel"].HARD);
+      updateLevel(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_5__["DifficultyLevel"].HARD);
+    },
+    style: {
+      backgroundImage: `url(${__webpack_require__(/*! ./../images/hard.png */ "./src/images/hard.png")})`,
+      backgroundSize: '150px 200px'
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 57,
+      columnNumber: 11
+    }
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 3,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 61,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "divround",
+    onClick: () => {
+      navigate("/quiz");
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 62,
+      columnNumber: 9
+    }
+  }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 62,
+      columnNumber: 68
+    }
+  }, " Next "), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "divround2",
+    onClick: () => {
+      navigate("/");
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 63,
+      columnNumber: 9
+    }
+  }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 63,
+      columnNumber: 65
+    }
+  }, " Back "), " "))));
+}
+
+/***/ }),
+
+/***/ "./src/components/Home.tsx":
+/*!*********************************!*\
+  !*** ./src/components/Home.tsx ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _App_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../App.styles */ "./src/App.styles.ts");
+var _jsxFileName = "D:\\naila\\bootcamp2020\\quiz-app\\src\\components\\Home.tsx";
+
+
+
+function Home() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "anim",
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9,
+      columnNumber: 5
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "anim",
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 10,
+      columnNumber: 5
+    }
+  }, "Q"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App_styles__WEBPACK_IMPORTED_MODULE_1__["Rotate"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11,
+      columnNumber: 5
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "anim",
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12,
+      columnNumber: 9
+    }
+  }, " U I ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "anim",
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 14,
+      columnNumber: 7
+    }
+  }, " Z ")));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Home);
+
+/***/ }),
+
+/***/ "./src/components/MainGrid.tsx":
+/*!*************************************!*\
+  !*** ./src/components/MainGrid.tsx ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MainGrid; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var _material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Paper */ "./node_modules/@material-ui/core/esm/Paper/index.js");
+/* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/index.js");
+/* harmony import */ var _context_GlobalState__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../context/GlobalState */ "./src/context/GlobalState.tsx");
+/* harmony import */ var _API_FetchAPI__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../API/FetchAPI */ "./src/API/FetchAPI.tsx");
+var _jsxFileName = "D:\\naila\\bootcamp2020\\quiz-app\\src\\components\\MainGrid.tsx";
+
+
+
+
+
+
+
+const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["makeStyles"])(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(0),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    width: 150
+  },
+  paperSelect: {
+    padding: theme.spacing(2)
+  }
+}));
+function MainGrid() {
+  const navigate = Object(react_router__WEBPACK_IMPORTED_MODULE_4__["useNavigate"])();
+  const classes = useStyles();
+  const [cat, setCat] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+  const {
+    updateCategory
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_GlobalState__WEBPACK_IMPORTED_MODULE_5__["GlobalContext"]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes.root,
+    style: {
+      backgroundImage: `url(${__webpack_require__(/*! ./../images/quiz.png */ "./src/images/quiz.png")})`,
+      backgroundSize: '1000px 350px',
+      backgroundPosition: 'bottom center',
+      backgroundRepeat: 'no-repeat'
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35,
+      columnNumber: 5
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    container: true,
+    spacing: 3,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38,
+      columnNumber: 7
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 12,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    id: "category",
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 40,
+      columnNumber: 11
+    }
+  }, "select a category")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 2,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 42,
+      columnNumber: 9
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 2,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 45,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: cat === 'cat1' ? classes.paperSelect : classes.paper,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46,
+      columnNumber: 11
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      backgroundImage: `url(${__webpack_require__(/*! ./../images/gk.jpg */ "./src/images/gk.jpg")})`
+    },
+    id: "cat1",
+    onClick: () => {
+      setCat('cat1');
+      updateCategory(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_6__["Category"].GK);
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48,
+      columnNumber: 11
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52,
+      columnNumber: 13
+    }
+  }, " General Knowledge ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 2,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 56,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: cat === 'cat2' ? classes.paperSelect : classes.paper,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 57,
+      columnNumber: 11
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      backgroundImage: `url(${__webpack_require__(/*! ./../images/science.jpg */ "./src/images/science.jpg")})`,
+      backgroundSize: '150px 200px'
+    },
+    id: "cat2",
+    onClick: () => {
+      setCat('cat2');
+      updateCategory(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_6__["Category"].SN);
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 58,
+      columnNumber: 11
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 65,
+      columnNumber: 13
+    }
+  }, " Science and Nature ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 2,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 69,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: cat === 'cat3' ? classes.paperSelect : classes.paper,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 70,
+      columnNumber: 11
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      backgroundImage: `url(${__webpack_require__(/*! ./../images/sports.jpg */ "./src/images/sports.jpg")})`,
+      backgroundSize: '150px 200px'
+    },
+    id: "cat3",
+    onClick: () => {
+      setCat('cat3');
+      updateCategory(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_6__["Category"].SP);
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 71,
+      columnNumber: 11
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 72,
+      columnNumber: 90
+    }
+  }, "   ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 2,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 75,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Paper__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: cat === 'cat4' ? classes.paperSelect : classes.paper,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 76,
+      columnNumber: 11
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      backgroundImage: `url(${__webpack_require__(/*! ./../images/vehicles.jpg */ "./src/images/vehicles.jpg")})`,
+      backgroundSize: '170px 140px',
+      backgroundRepeat: 'no-repeat'
+    },
+    id: "cat4",
+    onClick: () => {
+      setCat('cat4');
+      updateCategory(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_6__["Category"].VH);
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 77,
+      columnNumber: 11
+    }
+  }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 79,
+      columnNumber: 85
+    }
+  }, " Vehicles ")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    item: true,
+    xs: 2,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 82,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      backgroundImage: `url(${__webpack_require__(/*! ./../images/next.jpg */ "./src/images/next.jpg")})`,
+      backgroundSize: '60px 60px'
+    },
+    id: "divround",
+    onClick: () => {
+      navigate("/level");
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 83,
+      columnNumber: 10
+    }
+  }))));
+}
+
+/***/ }),
+
+/***/ "./src/components/Quiz.tsx":
+/*!*********************************!*\
+  !*** ./src/components/Quiz.tsx ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _API_FetchAPI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../API/FetchAPI */ "./src/API/FetchAPI.tsx");
+/* harmony import */ var _App_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../App.styles */ "./src/App.styles.ts");
+/* harmony import */ var _context_GlobalState__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context/GlobalState */ "./src/context/GlobalState.tsx");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/index.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var _material_ui_core_Card__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Card */ "./node_modules/@material-ui/core/esm/Card/index.js");
+/* harmony import */ var _material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/CardContent */ "./node_modules/@material-ui/core/esm/CardContent/index.js");
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
+var _jsxFileName = "D:\\naila\\bootcamp2020\\quiz-app\\src\\components\\Quiz.tsx";
+
+
+
+
+
+
+
+
+
+
+const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["makeStyles"])({
+  root: {
+    minWidth: 275,
+    width: 400,
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: 'lightGreen'
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)'
+  },
+  title: {
+    fontSize: 14
+  },
+  pos: {
+    marginBottom: 12
+  },
+  btn: {
+    width: 380
+  },
+  btnNext: {
+    backgroundColor: 'lightblue',
+    fontSize: 14,
+    borderColor: 'blue',
+    borderWidth: 2,
+    width: 300,
+    height: 30
+  },
+  btnStart: {
+    backgroundColor: 'lightblue',
+    fontSize: 14,
+    borderColor: 'blue',
+    borderWidth: 2,
+    width: 300,
+    height: 60
+  }
+});
+
+function Quiz() {
+  const navigate = Object(react_router__WEBPACK_IMPORTED_MODULE_4__["useNavigate"])();
+  const {
+    levelQuiz
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_GlobalState__WEBPACK_IMPORTED_MODULE_3__["GlobalContext"]);
+  const {
+    categoryQuiz
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_context_GlobalState__WEBPACK_IMPORTED_MODULE_3__["GlobalContext"]);
+  console.log('levelQuiz', levelQuiz);
+  console.log('categoryQuiz', categoryQuiz); //const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
+
+  const [score, setScore] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  const [gameOver, setGameOver] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true);
+  const [quizData, setQuizData] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]);
+  const [qno, setQNO] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
+  const [start, setStart] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [next, setNext] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [finish, setFinish] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const TOTAL_QUES = 5;
+  const [currentQuestion, setCurrentQuestion] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])();
+  const [userAns, setUserAns] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('');
+
+  const startQuiz = async () => {
+    setStart(true);
+    setGameOver(false);
+    const data = await Object(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_1__["fetchURL"])(TOTAL_QUES, levelQuiz, categoryQuiz);
+    setQuizData(data);
+    setQNO(0);
+    setScore(0);
+    let a = {
+      question: data[0].question,
+      options: Object(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_1__["shuffleArray"])([...data[0].incorrect_answers, data[0].correct_answer]),
+      correct_answer: data[0].correct_answer
+    };
+    setCurrentQuestion(a); //console.log('currentQuestion', currentQuestion?.question );
+
+    setStart(false);
+  };
+
+  const goToNextQuestion = async () => {
+    const num = qno + 1;
+
+    if (num < 5) {
+      setQNO(num);
+      setNext(false);
+      setCurrentQuestion({
+        question: quizData[num].question,
+        options: Object(_API_FetchAPI__WEBPACK_IMPORTED_MODULE_1__["shuffleArray"])([...quizData[num].incorrect_answers, quizData[num].correct_answer]),
+        correct_answer: quizData[num].correct_answer
+      });
+    } else {
+      setFinish(true);
+    }
+  };
+
+  const goToRestart = async () => {
+    navigate("/");
+  };
+
+  const checkAnswer = async e => {
+    setUserAns(e.currentTarget.value);
+    setNext(true);
+
+    if ((currentQuestion === null || currentQuestion === void 0 ? void 0 : currentQuestion.correct_answer) === e.currentTarget.value) {
+      setScore(score + 1);
+    }
+  };
+
+  const classes = useStyles();
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, gameOver || qno === TOTAL_QUES ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App_styles__WEBPACK_IMPORTED_MODULE_2__["Wrapper"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 122,
+      columnNumber: 42
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: startQuiz,
+    className: classes.btnStart,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 123,
+      columnNumber: 7
+    }
+  }, "Begin Quiz"), " ") : null, start ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App_styles__WEBPACK_IMPORTED_MODULE_2__["Wrapper"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 126,
+      columnNumber: 18
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 127,
+      columnNumber: 7
+    }
+  }, "Loading ..."), " ") : null, !start && !gameOver ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App_styles__WEBPACK_IMPORTED_MODULE_2__["Wrapper"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 130,
+      columnNumber: 32
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 131,
+      columnNumber: 9
+    }
+  }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 131,
+      columnNumber: 15
+    }
+  }, " Score: [ ", score, " ] "), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 132,
+      columnNumber: 8
+    }
+  }, " Question # ", qno + 1, " / ", TOTAL_QUES, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Card__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: classes.root,
+    variant: "outlined",
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 134,
+      columnNumber: 8
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_CardContent__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 137,
+      columnNumber: 7
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    component: "h5",
+    variant: "h5",
+    gutterBottom: true,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 139,
+      columnNumber: 9
+    }
+  }, currentQuestion === null || currentQuestion === void 0 ? void 0 : currentQuestion.question), currentQuestion === null || currentQuestion === void 0 ? void 0 : currentQuestion.options.map(answer => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App_styles__WEBPACK_IMPORTED_MODULE_2__["ButtonWrapper"], {
+    correct: (currentQuestion === null || currentQuestion === void 0 ? void 0 : currentQuestion.correct_answer) === answer && answer === userAns,
+    userClicked: userAns === answer,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 144,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    disabled: next,
+    value: answer,
+    onClick: checkAnswer,
+    className: classes.btn,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 150,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    dangerouslySetInnerHTML: {
+      __html: answer
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 151,
+      columnNumber: 13
+    }
+  })), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 152,
+      columnNumber: 19
+    }
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 158,
+      columnNumber: 9
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 159,
+      columnNumber: 9
+    }
+  })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App_styles__WEBPACK_IMPORTED_MODULE_2__["Wrapper"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 163,
+      columnNumber: 1
+    }
+  }, !gameOver && !start && qno !== TOTAL_QUES && next && !finish ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: goToNextQuestion,
+    className: classes.btnNext,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 165,
+      columnNumber: 7
+    }
+  }, "Next") : null, !gameOver && !start && finish ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App_styles__WEBPACK_IMPORTED_MODULE_2__["Rotate2"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 171,
+      columnNumber: 10
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "anim",
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 172,
+      columnNumber: 10
+    }
+  }, " Quiz Completed ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: goToRestart,
+    className: classes.btnNext,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 174,
+      columnNumber: 7
+    }
+  }, "Restart Quiz"), " ") : null));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Quiz);
+
+/***/ }),
+
+/***/ "./src/components/Title.tsx":
+/*!**********************************!*\
+  !*** ./src/components/Title.tsx ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Title; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var _material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/AppBar */ "./node_modules/@material-ui/core/esm/AppBar/index.js");
+/* harmony import */ var _material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Toolbar */ "./node_modules/@material-ui/core/esm/Toolbar/index.js");
+/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/Typography */ "./node_modules/@material-ui/core/esm/Typography/index.js");
+var _jsxFileName = "D:\\naila\\bootcamp2020\\quiz-app\\src\\components\\Title.tsx";
+
+
+
+
+
+const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["makeStyles"])(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginRight: theme.spacing(2)
+  },
+  title: {
+    flexGrow: 1
+  }
+}));
+function Title() {
+  const classes = useStyles();
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes.root,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26,
+      columnNumber: 5
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    position: "static",
+    style: {
+      backgroundColor: '#273746'
+    },
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 27,
+      columnNumber: 7
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28,
+      columnNumber: 9
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    variant: "h6",
+    className: classes.title,
+    __self: this,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30,
+      columnNumber: 11
+    }
+  }, "React Quiz App"))));
+}
+
+/***/ }),
+
+/***/ "./src/context/AppReducer.tsx":
+/*!************************************!*\
+  !*** ./src/context/AppReducer.tsx ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ((state, action) => {
+  switch (action.type) {
+    case 'level':
+      return { ...state,
+        levelQuiz: action.payload
+      };
+
+    case 'category':
+      return { ...state,
+        categoryQuiz: action.payload
+      };
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
+/***/ "./src/context/GlobalState.tsx":
+/*!*************************************!*\
+  !*** ./src/context/GlobalState.tsx ***!
+  \*************************************/
+/*! exports provided: GlobalContext, GlobalProvider */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalContext", function() { return GlobalContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GlobalProvider", function() { return GlobalProvider; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _AppReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AppReducer */ "./src/context/AppReducer.tsx");
+/* harmony import */ var _API_FetchAPI__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../API/FetchAPI */ "./src/API/FetchAPI.tsx");
+var _jsxFileName = "D:\\naila\\bootcamp2020\\quiz-app\\src\\context\\GlobalState.tsx";
+
+
+
+const initialState = {
+  categoryQuiz: _API_FetchAPI__WEBPACK_IMPORTED_MODULE_2__["Category"].GK,
+  levelQuiz: _API_FetchAPI__WEBPACK_IMPORTED_MODULE_2__["DifficultyLevel"].EASY,
+  updateCategory: val => {},
+  updateLevel: val => {}
+}; // create the Global Context
+
+const GlobalContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])(initialState);
+//create a provider for global context    
+//export const GlobalProvider = ({ children }) => {
+const GlobalProvider = props => {
+  const [state, dispatch] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useReducer"])(_AppReducer__WEBPACK_IMPORTED_MODULE_1__["default"], initialState); //action
+
+  function updateLevel(val) {
+    console.log("val =", val);
+    dispatch({
+      type: 'level',
+      payload: val
+    });
+  }
+
+  function updateCategory(val) {
+    dispatch({
+      type: 'category',
+      payload: val
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(GlobalContext.Provider, {
+    value: {
+      categoryQuiz: state.categoryQuiz,
+      levelQuiz: state.levelQuiz,
+      updateCategory,
+      updateLevel
+    },
+    __self: undefined,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 44,
+      columnNumber: 9
+    }
+  }, props.children);
+};
+
+/***/ }),
+
+/***/ "./src/images/easy.png":
+/*!*****************************!*\
+  !*** ./src/images/easy.png ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "static/media/easy.6478b8b1.png";
+
+/***/ }),
+
+/***/ "./src/images/gk.jpg":
+/*!***************************!*\
+  !*** ./src/images/gk.jpg ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "static/media/gk.ef049efb.jpg";
+
+/***/ }),
+
+/***/ "./src/images/hard.png":
+/*!*****************************!*\
+  !*** ./src/images/hard.png ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "static/media/hard.c1450254.png";
+
+/***/ }),
+
+/***/ "./src/images/med.png":
+/*!****************************!*\
+  !*** ./src/images/med.png ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "static/media/med.5e7e8bd8.png";
+
+/***/ }),
+
+/***/ "./src/images/next.jpg":
+/*!*****************************!*\
+  !*** ./src/images/next.jpg ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/jpeg;base64,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"
+
+/***/ }),
+
+/***/ "./src/images/quiz.png":
+/*!*****************************!*\
+  !*** ./src/images/quiz.png ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "static/media/quiz.8e717cca.png";
+
+/***/ }),
+
+/***/ "./src/images/science.jpg":
+/*!********************************!*\
+  !*** ./src/images/science.jpg ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "static/media/science.99ba2828.jpg";
+
+/***/ }),
+
+/***/ "./src/images/sports.jpg":
+/*!*******************************!*\
+  !*** ./src/images/sports.jpg ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "static/media/sports.f3227773.jpg";
+
+/***/ }),
+
+/***/ "./src/images/vehicles.jpg":
+/*!*********************************!*\
+  !*** ./src/images/vehicles.jpg ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "static/media/vehicles.7ef582df.jpg";
+
+/***/ }),
+
+/***/ "./src/index.css":
+/*!***********************!*\
+  !*** ./src/index.css ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./index.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./index.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css", function() {
+		var newContent = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js??ref--6-oneOf-3-1!../node_modules/postcss-loader/src??postcss!./index.css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/index.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/index.tsx":
+/*!***********************!*\
+  !*** ./src/index.tsx ***!
+  \***********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.css */ "./src/index.css");
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App */ "./src/App.tsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+var _jsxFileName = "D:\\naila\\bootcamp2020\\quiz-app\\src\\index.tsx";
+
+
+
+
+
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["BrowserRouter"], {
+  __self: undefined,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 8,
+    columnNumber: 3
+  }
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  __self: undefined,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 9,
+    columnNumber: 5
+  }
+})), document.getElementById('root'));
+
+/***/ }),
+
+/***/ 1:
+/*!***************************************************************************************************************!*\
+  !*** multi (webpack)/hot/dev-server.js ./node_modules/react-dev-utils/webpackHotDevClient.js ./src/index.tsx ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! D:\naila\bootcamp2020\quiz-app\node_modules\webpack\hot\dev-server.js */"./node_modules/webpack/hot/dev-server.js");
+__webpack_require__(/*! D:\naila\bootcamp2020\quiz-app\node_modules\react-dev-utils\webpackHotDevClient.js */"./node_modules/react-dev-utils/webpackHotDevClient.js");
+module.exports = __webpack_require__(/*! D:\naila\bootcamp2020\quiz-app\src\index.tsx */"./src/index.tsx");
+
+
+/***/ })
+
+},[[1,"runtime-main",0]]]);
+//# sourceMappingURL=main.chunk.js.map
