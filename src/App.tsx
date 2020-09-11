@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchURL, DifficultyLevel, Category } from './API/FetchAPI';
+//import { fetchURL, DifficultyLevel, Category } from './API/FetchAPI';
 import { GlobalProvider } from './context/GlobalState';
 import {  GlobalStyle } from './App.styles';
 import { Routes, Route } from 'react-router';

@@ -1,6 +1,5 @@
 import React, { createContext, useReducer } from 'react'
 import APPReducer from './AppReducer';
-import { ApplicationState } from './../API/FetchAPI';
 import {DifficultyLevel, Category} from './../API/FetchAPI';
 
 const initialState = {

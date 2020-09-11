@@ -29,7 +29,7 @@ export default function MainGrid() {
   const navigate = useNavigate();
   const classes = useStyles();
   const [level, setLevel] = useState(DifficultyLevel.EASY);
-  const { levelQuiz } = useContext(GlobalContext);
+//  const { levelQuiz } = useContext(GlobalContext);
   const { updateLevel } = useContext(GlobalContext);
 
   return (

@@ -1,16 +1,14 @@
 import React, { useState, useContext } from 'react';
-import { fetchURL, DifficultyLevel, Category, Question, ModifiedQuestion, shuffleArray } from './../API/FetchAPI';
+import { fetchURL, Question, ModifiedQuestion, shuffleArray } from './../API/FetchAPI';
 import {  Wrapper, ButtonWrapper } from './../App.styles';
 import { GlobalContext } from '../context/GlobalState';
 import { useNavigate  } from 'react-router';
 import {  Rotate2 } from './../App.styles';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { TextareaAutosize } from '@material-ui/core';
+
 
 
 const useStyles = makeStyles({

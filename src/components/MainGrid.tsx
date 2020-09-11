@@ -5,22 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { useNavigate  } from 'react-router';
 import { GlobalContext } from '../context/GlobalState';
 import {Category} from './../API/FetchAPI';
-import { url } from 'inspector';
-import vehicles from './../images/vehicles.jpg';
-import gk from './../images/gk.jpg';
-
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import { Opacity } from '@material-ui/icons';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
